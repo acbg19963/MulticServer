@@ -1,0 +1,25 @@
+{
+    "multicApp": {
+        "planeta" : {
+            "home": {
+                "title": "Planetas",
+                "createLabel": "Crear nuevo Planeta",
+                "createOrEditLabel": "Crear o editar Planeta"
+            },
+            "created": "Un nuevo Planeta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Planeta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Planeta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Planeta {{ id }}?"
+            },
+            "detail": {
+                "title": "Planeta"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "progreso": "Progreso",
+            "universo": "Universo",
+            "actividades": "Actividades"
+        }
+    }
+}

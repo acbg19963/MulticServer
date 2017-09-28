@@ -1,0 +1,10 @@
+{
+    "multicApp": {
+        "DIFICULTAD" : {
+            "null": "",
+            "FACIL": "FACIL",
+            "INTERMEDIO": "INTERMEDIO",
+            "DIFICIL": "DIFICIL"
+        }
+    }
+}

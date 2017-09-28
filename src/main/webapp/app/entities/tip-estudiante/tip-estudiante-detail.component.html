@@ -1,0 +1,31 @@
+
+<div *ngIf="tipEstudiante">
+    <h2><span jhiTranslate="multicApp.tipEstudiante.detail.title">Tip Estudiante</span> {{tipEstudiante.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="multicApp.tipEstudiante.tip">Tip</span></dt>
+        <dd>
+            <span>{{tipEstudiante.tip}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.tipEstudiante.estudiante">Estudiante</span></dt>
+        <dd>
+            <div *ngIf="tipEstudiante.estudiante">
+                <a [routerLink]="['/estudiante', tipEstudiante.estudiante?.id]">{{tipEstudiante.estudiante?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'tip-estudiante/'+ tipEstudiante.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

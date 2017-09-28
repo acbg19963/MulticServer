@@ -1,0 +1,24 @@
+{
+    "multicApp": {
+        "universo" : {
+            "home": {
+                "title": "Universos",
+                "createLabel": "Crear nuevo Universo",
+                "createOrEditLabel": "Crear o editar Universo"
+            },
+            "created": "Un nuevo Universo ha sido creado con el identificador {{ param }}",
+            "updated": "Un Universo ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Universo ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Universo {{ id }}?"
+            },
+            "detail": {
+                "title": "Universo"
+            },
+            "nombre": "Nombre",
+            "descripcion": "Descripcion",
+            "avatares": "Avatares",
+            "planetas": "Planetas"
+        }
+    }
+}

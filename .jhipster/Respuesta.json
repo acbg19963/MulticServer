@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "actividad",
+            "otherEntityName": "actividad",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "enunciado",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "acertado",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20170928043032",
+    "entityTableName": "respuesta",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

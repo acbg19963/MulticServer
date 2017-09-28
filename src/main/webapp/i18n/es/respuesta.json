@@ -1,0 +1,23 @@
+{
+    "multicApp": {
+        "respuesta" : {
+            "home": {
+                "title": "Respuestas",
+                "createLabel": "Crear nuevo Respuesta",
+                "createOrEditLabel": "Crear o editar Respuesta"
+            },
+            "created": "Un nuevo Respuesta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Respuesta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Respuesta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Respuesta {{ id }}?"
+            },
+            "detail": {
+                "title": "Respuesta"
+            },
+            "enunciado": "Enunciado",
+            "acertado": "Acertado",
+            "actividad": "Actividad"
+        }
+    }
+}

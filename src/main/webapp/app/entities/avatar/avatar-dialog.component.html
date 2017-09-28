@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAvatarLabel" jhiTranslate="multicApp.avatar.home.createOrEditLabel">Create or edit a Avatar</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!avatar.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="avatar.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.monedas" for="field_monedas">Monedas</label>
+            <input type="number" class="form-control" name="monedas" id="field_monedas"
+                [(ngModel)]="avatar.monedas"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.nombre" for="field_nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="field_nombre"
+                [(ngModel)]="avatar.nombre"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.cabello" for="field_cabello">Cabello</label>
+            <input type="text" class="form-control" name="cabello" id="field_cabello"
+                [(ngModel)]="avatar.cabello"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.ropa" for="field_ropa">Ropa</label>
+            <input type="text" class="form-control" name="ropa" id="field_ropa"
+                [(ngModel)]="avatar.ropa"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.gafas" for="field_gafas">Gafas</label>
+            <input type="text" class="form-control" name="gafas" id="field_gafas"
+                [(ngModel)]="avatar.gafas"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.avatar.universo" for="field_universo">Universo</label>
+            <select class="form-control" id="field_universo" name="universo" [(ngModel)]="avatar.universo" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="universoOption.id === avatar.universo?.id ? avatar.universo : universoOption" *ngFor="let universoOption of universos; trackBy: trackUniversoById">{{universoOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

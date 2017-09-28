@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "cursos",
+            "relationshipName": "profesores",
+            "otherEntityName": "profesor",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "estudiantes",
+            "otherEntityName": "estudiante",
+            "otherEntityRelationshipName": "curso"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170928043033",
+    "entityTableName": "curso",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

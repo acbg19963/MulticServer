@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "estudiante",
+            "otherEntityName": "estudiante",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tip",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170928043036",
+    "entityTableName": "tip_estudiante",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "avatares",
+            "otherEntityName": "avatar",
+            "otherEntityRelationshipName": "universo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "planetas",
+            "otherEntityName": "planeta",
+            "otherEntityRelationshipName": "universo"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170928043029",
+    "entityTableName": "universo",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

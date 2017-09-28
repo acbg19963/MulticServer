@@ -1,0 +1,22 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "actividad",
+            "otherEntityName": "actividad",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "enunciado",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170928043034",
+    "entityTableName": "ayuda",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="multicApp.avatar.home.title">Avatars</span>
+        <button class="btn btn-primary float-right jh-create-entity create-avatar" [routerLink]="['/', { outlets: { popup: ['avatar-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="multicApp.avatar.home.createLabel">
+            Create new Avatar
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="avatars">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="monedas"><span jhiTranslate="multicApp.avatar.monedas">Monedas</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="nombre"><span jhiTranslate="multicApp.avatar.nombre">Nombre</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cabello"><span jhiTranslate="multicApp.avatar.cabello">Cabello</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ropa"><span jhiTranslate="multicApp.avatar.ropa">Ropa</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="gafas"><span jhiTranslate="multicApp.avatar.gafas">Gafas</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="universo.id"><span jhiTranslate="multicApp.avatar.universo">Universo</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let avatar of avatars ;trackBy: trackId">
+                <td><a [routerLink]="['../avatar', avatar.id ]">{{avatar.id}}</a></td>
+                <td>{{avatar.monedas}}</td>
+                <td>{{avatar.nombre}}</td>
+                <td>{{avatar.cabello}}</td>
+                <td>{{avatar.ropa}}</td>
+                <td>{{avatar.gafas}}</td>
+                <td>
+                    <div *ngIf="avatar.universo">
+                        <a [routerLink]="['../universo', avatar.universo?.id ]" >{{avatar.universo?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../avatar', avatar.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'avatar/'+ avatar.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'avatar/'+ avatar.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

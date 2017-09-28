@@ -1,0 +1,99 @@
+entity Estudiante {
+	
+    fechaNac LocalDate required,
+    colegio String,
+    escenario Escenario required,
+    genero String
+}
+enum Escenario {
+	SUPERHEROES, DEPORTISTAS
+}
+
+entity Avatar
+{
+	monedas Integer,
+    nombre String,
+    cabello String,
+    ropa String,
+    gafas String
+    
+}
+
+entity Universo
+{
+	nombre String required,
+    descripcion String required
+}
+
+entity Planeta
+{
+	nombre String,
+    descripcion String,
+    progreso Integer
+    
+}
+
+entity Actividad
+
+{
+	enunciado String,
+    ayuda Integer,
+    tiempo Integer,
+  	dificultad DIFICULTAD
+  }
+  
+  enum DIFICULTAD
+  {
+   FACIL, INTERMEDIO, DIFICIL
+  }
+  
+  entity Respuesta
+  {
+  	enunciado String,
+    acertado Boolean
+  	
+  }
+  
+  entity Curso
+  {
+   nombre String
+  }
+  
+  entity Ayuda
+  {
+  	enunciado String
+  }
+entity Profesor
+{
+	materia String
+}
+
+entity TipEstudiante
+{
+	tip String required
+}
+relationship OneToOne {
+	Estudiante {usuario} to User,
+    Profesor {usuario} to User,
+    Estudiante {avatar} to Avatar {estudiante}
+  
+}
+
+relationship ManyToOne
+{
+    Estudiante {curso} to 	Curso {estudiantes},
+    Avatar {universo} to Universo {avatares},
+    Planeta {universo} to Universo {planetas},
+    Actividad {planeta} to Planeta {actividades},
+    Respuesta {actividad} to Actividad {respuestas},
+	Ayuda {actividad} to Actividad {ayudas} ,
+    Actividad {profesor} to Profesor {actividades},
+    TipEstudiante {estudiante} to Estudiante {tips}
+}
+relationship ManyToMany
+{
+	Curso {profesores} to Profesor {cursos}
+}
+
+paginate Profesor, Curso, Estudiante, Avatar, Universo, Planeta, Actividad, Respuesta, Ayuda with infinite-scroll
+  

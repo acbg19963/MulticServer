@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span jhiTranslate="multicApp.estudiante.home.title">Estudiantes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-estudiante" [routerLink]="['/', { outlets: { popup: ['estudiante-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="multicApp.estudiante.home.createLabel">
+            Create new Estudiante
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="estudiantes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fechaNac"><span jhiTranslate="multicApp.estudiante.fechaNac">Fecha Nac</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="colegio"><span jhiTranslate="multicApp.estudiante.colegio">Colegio</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="escenario"><span jhiTranslate="multicApp.estudiante.escenario">Escenario</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="genero"><span jhiTranslate="multicApp.estudiante.genero">Genero</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="usuario.id"><span jhiTranslate="multicApp.estudiante.usuario">Usuario</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="avatar.id"><span jhiTranslate="multicApp.estudiante.avatar">Avatar</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="curso.id"><span jhiTranslate="multicApp.estudiante.curso">Curso</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let estudiante of estudiantes ;trackBy: trackId">
+                <td><a [routerLink]="['../estudiante', estudiante.id ]">{{estudiante.id}}</a></td>
+                <td>{{estudiante.fechaNac | date:'mediumDate'}}</td>
+                <td>{{estudiante.colegio}}</td>
+                <td jhiTranslate="{{'multicApp.Escenario.' + estudiante.escenario}}">{{estudiante.escenario}}</td>
+                <td>{{estudiante.genero}}</td>
+                <td>
+                    {{estudiante.usuario?.id}}
+                </td>
+                <td>
+                    <div *ngIf="estudiante.avatar">
+                        <a [routerLink]="['../avatar', estudiante.avatar?.id ]" >{{estudiante.avatar?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="estudiante.curso">
+                        <a [routerLink]="['../curso', estudiante.curso?.id ]" >{{estudiante.curso?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../estudiante', estudiante.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'estudiante/'+ estudiante.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'estudiante/'+ estudiante.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

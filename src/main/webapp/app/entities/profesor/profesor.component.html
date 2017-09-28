@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span jhiTranslate="multicApp.profesor.home.title">Profesors</span>
+        <button class="btn btn-primary float-right jh-create-entity create-profesor" [routerLink]="['/', { outlets: { popup: ['profesor-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="multicApp.profesor.home.createLabel">
+            Create new Profesor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="profesors">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="materia"><span jhiTranslate="multicApp.profesor.materia">Materia</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="usuario.id"><span jhiTranslate="multicApp.profesor.usuario">Usuario</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let profesor of profesors ;trackBy: trackId">
+                <td><a [routerLink]="['../profesor', profesor.id ]">{{profesor.id}}</a></td>
+                <td>{{profesor.materia}}</td>
+                <td>
+                    {{profesor.usuario?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../profesor', profesor.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'profesor/'+ profesor.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'profesor/'+ profesor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

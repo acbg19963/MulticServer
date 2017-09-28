@@ -1,0 +1,9 @@
+{
+    "multicApp": {
+        "Escenario" : {
+            "null": "",
+            "SUPERHEROES": "SUPERHEROES",
+            "DEPORTISTAS": "DEPORTISTAS"
+        }
+    }
+}

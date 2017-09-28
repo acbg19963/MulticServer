@@ -1,0 +1,53 @@
+
+<div *ngIf="estudiante">
+    <h2><span jhiTranslate="multicApp.estudiante.detail.title">Estudiante</span> {{estudiante.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="multicApp.estudiante.fechaNac">Fecha Nac</span></dt>
+        <dd>
+            <span>{{estudiante.fechaNac | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.colegio">Colegio</span></dt>
+        <dd>
+            <span>{{estudiante.colegio}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.escenario">Escenario</span></dt>
+        <dd>
+            <span jhiTranslate="{{'multicApp.Escenario.' + estudiante.escenario}}">{{estudiante.escenario}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.genero">Genero</span></dt>
+        <dd>
+            <span>{{estudiante.genero}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.usuario">Usuario</span></dt>
+        <dd>
+            {{estudiante.usuario?.id}}
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.avatar">Avatar</span></dt>
+        <dd>
+            <div *ngIf="estudiante.avatar">
+                <a [routerLink]="['/avatar', estudiante.avatar?.id]">{{estudiante.avatar?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="multicApp.estudiante.curso">Curso</span></dt>
+        <dd>
+            <div *ngIf="estudiante.curso">
+                <a [routerLink]="['/curso', estudiante.curso?.id]">{{estudiante.curso?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'estudiante/'+ estudiante.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

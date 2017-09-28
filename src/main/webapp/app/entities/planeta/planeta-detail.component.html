@@ -1,0 +1,39 @@
+
+<div *ngIf="planeta">
+    <h2><span jhiTranslate="multicApp.planeta.detail.title">Planeta</span> {{planeta.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="multicApp.planeta.nombre">Nombre</span></dt>
+        <dd>
+            <span>{{planeta.nombre}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.planeta.descripcion">Descripcion</span></dt>
+        <dd>
+            <span>{{planeta.descripcion}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.planeta.progreso">Progreso</span></dt>
+        <dd>
+            <span>{{planeta.progreso}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.planeta.universo">Universo</span></dt>
+        <dd>
+            <div *ngIf="planeta.universo">
+                <a [routerLink]="['/universo', planeta.universo?.id]">{{planeta.universo?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'planeta/'+ planeta.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "universo",
+            "otherEntityName": "universo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "estudiante",
+            "otherEntityName": "estudiante",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "avatar"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "monedas",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cabello",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ropa",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gafas",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170928043028",
+    "entityTableName": "avatar",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

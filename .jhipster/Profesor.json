@@ -1,0 +1,37 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "profesor"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "actividades",
+            "otherEntityName": "actividad",
+            "otherEntityRelationshipName": "profesor"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "cursos",
+            "otherEntityName": "curso",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "profesores"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "materia",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170928043035",
+    "entityTableName": "profesor",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

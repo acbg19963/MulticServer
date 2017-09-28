@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "universo",
+            "otherEntityName": "universo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "actividades",
+            "otherEntityName": "actividad",
+            "otherEntityRelationshipName": "planeta"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nombre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "progreso",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170928043030",
+    "entityTableName": "planeta",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

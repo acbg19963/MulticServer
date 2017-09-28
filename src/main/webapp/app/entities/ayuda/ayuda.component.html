@@ -1,0 +1,62 @@
+<div>
+    <h2>
+        <span jhiTranslate="multicApp.ayuda.home.title">Ayudas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-ayuda" [routerLink]="['/', { outlets: { popup: ['ayuda-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="multicApp.ayuda.home.createLabel">
+            Create new Ayuda
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="ayudas">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="enunciado"><span jhiTranslate="multicApp.ayuda.enunciado">Enunciado</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="actividad.id"><span jhiTranslate="multicApp.ayuda.actividad">Actividad</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let ayuda of ayudas ;trackBy: trackId">
+                <td><a [routerLink]="['../ayuda', ayuda.id ]">{{ayuda.id}}</a></td>
+                <td>{{ayuda.enunciado}}</td>
+                <td>
+                    <div *ngIf="ayuda.actividad">
+                        <a [routerLink]="['../actividad', ayuda.actividad?.id ]" >{{ayuda.actividad?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../ayuda', ayuda.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ayuda/'+ ayuda.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'ayuda/'+ ayuda.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

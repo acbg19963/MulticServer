@@ -1,0 +1,28 @@
+{
+    "multicApp": {
+        "estudiante" : {
+            "home": {
+                "title": "Estudiantes",
+                "createLabel": "Crear nuevo Estudiante",
+                "createOrEditLabel": "Crear o editar Estudiante"
+            },
+            "created": "Un nuevo Estudiante ha sido creado con el identificador {{ param }}",
+            "updated": "Un Estudiante ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Estudiante ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Estudiante {{ id }}?"
+            },
+            "detail": {
+                "title": "Estudiante"
+            },
+            "fechaNac": "Fecha Nac",
+            "colegio": "Colegio",
+            "escenario": "Escenario",
+            "genero": "Genero",
+            "usuario": "Usuario",
+            "avatar": "Avatar",
+            "curso": "Curso",
+            "tips": "Tips"
+        }
+    }
+}

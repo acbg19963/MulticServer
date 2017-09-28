@@ -1,0 +1,63 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "usuario",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "estudiante"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "avatar",
+            "otherEntityName": "avatar",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "estudiante"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "curso",
+            "otherEntityName": "curso",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "tips",
+            "otherEntityName": "tipEstudiante",
+            "otherEntityRelationshipName": "estudiante"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fechaNac",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "colegio",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "escenario",
+            "fieldType": "Escenario",
+            "fieldValues": "SUPERHEROES,DEPORTISTAS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "genero",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170928043027",
+    "entityTableName": "estudiante",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}
