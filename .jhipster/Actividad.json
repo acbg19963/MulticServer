@@ -32,14 +32,6 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "ayuda",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "tiempo",
-            "fieldType": "Integer"
-        },
-        {
             "fieldName": "dificultad",
             "fieldType": "DIFICULTAD",
             "fieldValues": "FACIL,INTERMEDIO,DIFICIL"

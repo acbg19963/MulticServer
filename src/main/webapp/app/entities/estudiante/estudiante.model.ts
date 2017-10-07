@@ -8,7 +8,7 @@ export const enum Escenario {
 export class Estudiante implements BaseEntity {
     constructor(
         public id?: number,
-        public fechaNac?: any,
+        public fechaNac?: string,
         public colegio?: string,
         public escenario?: Escenario,
         public genero?: string,
@@ -16,6 +16,7 @@ export class Estudiante implements BaseEntity {
         public avatar?: BaseEntity,
         public curso?: BaseEntity,
         public tips?: BaseEntity[],
+        public actividadesxEstus?: BaseEntity[],
     ) {
     }
 }

@@ -28,6 +28,12 @@
             "relationshipName": "tips",
             "otherEntityName": "tipEstudiante",
             "otherEntityRelationshipName": "estudiante"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "actividadesxEstu",
+            "otherEntityName": "actividadxEstudiante",
+            "otherEntityRelationshipName": "estudiante"
         }
     ],
     "fields": [

@@ -2,22 +2,26 @@ entity Estudiante {
 	
     fechaNac LocalDate required,
     colegio String,
-    escenario Escenario required,
+    escenario Escenario ,
     genero String
 }
 enum Escenario {
-	SUPERHEROES, DEPORTISTAS
+	SUPERHEROES, DEPORTISTAS , NINGUNO
 }
 
 entity Avatar
 {
 	monedas Integer,
     nombre String,
-    cabello String,
-    ropa String,
-    gafas String
+    cabello COLOR,
+    ropa COLOR
+    
     
 }
+enum COLOR
+  {
+   AZUL, MORADO, ROJO, AMARILLO
+  }
 
 entity Universo
 {
@@ -32,14 +36,19 @@ entity Planeta
     progreso Integer
     
 }
+entity ActividadxEstudiante
+{
+	acerto Boolean,
+    cantayuda Integer,
+    tiempo Integer
+}
 
 entity Actividad
 
 {
 	enunciado String,
-    ayuda Integer,
-    tiempo Integer,
-  	dificultad DIFICULTAD
+  	dificultad DIFICULTAD,
+    esQuiz Boolean
   }
   
   enum DIFICULTAD
@@ -88,12 +97,15 @@ relationship ManyToOne
     Respuesta {actividad} to Actividad {respuestas},
 	Ayuda {actividad} to Actividad {ayudas} ,
     Actividad {profesor} to Profesor {actividades},
-    TipEstudiante {estudiante} to Estudiante {tips}
+    TipEstudiante {estudiante} to Estudiante {tips},
+    ActividadxEstudiante {estudiante} to Estudiante {actividadesxEstu},
+    ActividadxEstudiante {actividad} to Actividad 
+    
 }
 relationship ManyToMany
 {
 	Curso {profesores} to Profesor {cursos}
 }
 
-paginate Profesor, Curso, Estudiante, Avatar, Universo, Planeta, Actividad, Respuesta, Ayuda with infinite-scroll
+paginate Profesor, Curso, Estudiante, Avatar, Universo, Planeta, Actividad, ActividadxEstudiante,Respuesta, Ayuda with infinite-scroll
   

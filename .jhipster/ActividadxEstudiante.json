@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "estudiante",
+            "otherEntityName": "estudiante",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "actividad",
+            "otherEntityName": "actividad",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "acerto",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "cantayuda",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "tiempo",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171007015335",
+    "entityTableName": "actividadx_estudiante",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no"
+}

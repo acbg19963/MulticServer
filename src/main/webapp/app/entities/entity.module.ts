@@ -10,6 +10,7 @@ import { MulticCursoModule } from './curso/curso.module';
 import { MulticAyudaModule } from './ayuda/ayuda.module';
 import { MulticProfesorModule } from './profesor/profesor.module';
 import { MulticTipEstudianteModule } from './tip-estudiante/tip-estudiante.module';
+import { MulticActividadxEstudianteModule } from './actividadx-estudiante/actividadx-estudiante.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MulticTipEstudianteModule } from './tip-estudiante/tip-estudiante.modul
         MulticAyudaModule,
         MulticProfesorModule,
         MulticTipEstudianteModule,
+        MulticActividadxEstudianteModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

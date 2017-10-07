@@ -1,0 +1,54 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myActividadxEstudianteLabel" jhiTranslate="multicApp.actividadxEstudiante.home.createOrEditLabel">Create or edit a Actividadx Estudiante</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!actividadxEstudiante.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="actividadxEstudiante.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.acerto" for="field_acerto">Acerto</label>
+            <input type="checkbox" class="form-control" name="acerto" id="field_acerto"
+                [(ngModel)]="actividadxEstudiante.acerto"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.cantayuda" for="field_cantayuda">Cantayuda</label>
+            <input type="number" class="form-control" name="cantayuda" id="field_cantayuda"
+                [(ngModel)]="actividadxEstudiante.cantayuda"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.tiempo" for="field_tiempo">Tiempo</label>
+            <input type="number" class="form-control" name="tiempo" id="field_tiempo"
+                [(ngModel)]="actividadxEstudiante.tiempo"  />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.estudiante" for="field_estudiante">Estudiante</label>
+            <select class="form-control" id="field_estudiante" name="estudiante" [(ngModel)]="actividadxEstudiante.estudiante" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="estudianteOption.id === actividadxEstudiante.estudiante?.id ? actividadxEstudiante.estudiante : estudianteOption" *ngFor="let estudianteOption of estudiantes; trackBy: trackEstudianteById">{{estudianteOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.actividad" for="field_actividad">Actividad</label>
+            <select class="form-control" id="field_actividad" name="actividad" [(ngModel)]="actividadxEstudiante.actividad" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="actividadOption.id === actividadxEstudiante.actividad?.id ? actividadxEstudiante.actividad : actividadOption" *ngFor="let actividadOption of actividads; trackBy: trackActividadById">{{actividadOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

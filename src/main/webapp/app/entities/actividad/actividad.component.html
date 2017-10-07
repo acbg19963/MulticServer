@@ -18,8 +18,6 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="enunciado"><span jhiTranslate="multicApp.actividad.enunciado">Enunciado</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="ayuda"><span jhiTranslate="multicApp.actividad.ayuda">Ayuda</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="tiempo"><span jhiTranslate="multicApp.actividad.tiempo">Tiempo</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="dificultad"><span jhiTranslate="multicApp.actividad.dificultad">Dificultad</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="planeta.id"><span jhiTranslate="multicApp.actividad.planeta">Planeta</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="profesor.id"><span jhiTranslate="multicApp.actividad.profesor">Profesor</span> <span class="fa fa-sort"></span></th>
@@ -30,8 +28,6 @@
             <tr *ngFor="let actividad of actividads ;trackBy: trackId">
                 <td><a [routerLink]="['../actividad', actividad.id ]">{{actividad.id}}</a></td>
                 <td>{{actividad.enunciado}}</td>
-                <td>{{actividad.ayuda}}</td>
-                <td>{{actividad.tiempo}}</td>
                 <td jhiTranslate="{{'multicApp.DIFICULTAD.' + actividad.dificultad}}">{{actividad.dificultad}}</td>
                 <td>
                     <div *ngIf="actividad.planeta">

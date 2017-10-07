@@ -26,12 +26,6 @@ public class Actividad implements Serializable {
     @Column(name = "enunciado")
     private String enunciado;
 
-    @Column(name = "ayuda")
-    private Integer ayuda;
-
-    @Column(name = "tiempo")
-    private Integer tiempo;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "dificultad")
     private DIFICULTAD dificultad;
@@ -70,32 +64,6 @@ public class Actividad implements Serializable {
 
     public void setEnunciado(String enunciado) {
         this.enunciado = enunciado;
-    }
-
-    public Integer getAyuda() {
-        return ayuda;
-    }
-
-    public Actividad ayuda(Integer ayuda) {
-        this.ayuda = ayuda;
-        return this;
-    }
-
-    public void setAyuda(Integer ayuda) {
-        this.ayuda = ayuda;
-    }
-
-    public Integer getTiempo() {
-        return tiempo;
-    }
-
-    public Actividad tiempo(Integer tiempo) {
-        this.tiempo = tiempo;
-        return this;
-    }
-
-    public void setTiempo(Integer tiempo) {
-        this.tiempo = tiempo;
     }
 
     public DIFICULTAD getDificultad() {
@@ -213,8 +181,6 @@ public class Actividad implements Serializable {
         return "Actividad{" +
             "id=" + getId() +
             ", enunciado='" + getEnunciado() + "'" +
-            ", ayuda='" + getAyuda() + "'" +
-            ", tiempo='" + getTiempo() + "'" +
             ", dificultad='" + getDificultad() + "'" +
             "}";
     }

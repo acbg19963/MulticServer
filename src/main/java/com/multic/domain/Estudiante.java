@@ -55,6 +55,10 @@ public class Estudiante implements Serializable {
     @JsonIgnore
     private Set<TipEstudiante> tips = new HashSet<>();
 
+    @OneToMany(mappedBy = "estudiante")
+    @JsonIgnore
+    private Set<ActividadxEstudiante> actividadesxEstus = new HashSet<>();
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -178,6 +182,31 @@ public class Estudiante implements Serializable {
 
     public void setTips(Set<TipEstudiante> tipEstudiantes) {
         this.tips = tipEstudiantes;
+    }
+
+    public Set<ActividadxEstudiante> getActividadesxEstus() {
+        return actividadesxEstus;
+    }
+
+    public Estudiante actividadesxEstus(Set<ActividadxEstudiante> actividadxEstudiantes) {
+        this.actividadesxEstus = actividadxEstudiantes;
+        return this;
+    }
+
+    public Estudiante addActividadesxEstu(ActividadxEstudiante actividadxEstudiante) {
+        this.actividadesxEstus.add(actividadxEstudiante);
+        actividadxEstudiante.setEstudiante(this);
+        return this;
+    }
+
+    public Estudiante removeActividadesxEstu(ActividadxEstudiante actividadxEstudiante) {
+        this.actividadesxEstus.remove(actividadxEstudiante);
+        actividadxEstudiante.setEstudiante(null);
+        return this;
+    }
+
+    public void setActividadesxEstus(Set<ActividadxEstudiante> actividadxEstudiantes) {
+        this.actividadesxEstus = actividadxEstudiantes;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

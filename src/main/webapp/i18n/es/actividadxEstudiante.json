@@ -1,0 +1,25 @@
+{
+    "multicApp": {
+        "actividadxEstudiante" : {
+            "home": {
+                "title": "Actividadx Estudiantes",
+                "createLabel": "Crear nuevo Actividadx Estudiante",
+                "createOrEditLabel": "Crear o editar Actividadx Estudiante"
+            },
+            "created": "Un nuevo Actividadx Estudiante ha sido creado con el identificador {{ param }}",
+            "updated": "Un Actividadx Estudiante ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Actividadx Estudiante ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Actividadx Estudiante {{ id }}?"
+            },
+            "detail": {
+                "title": "Actividadx Estudiante"
+            },
+            "acerto": "Acerto",
+            "cantayuda": "Cantayuda",
+            "tiempo": "Tiempo",
+            "estudiante": "Estudiante",
+            "actividad": "Actividad"
+        }
+    }
+}

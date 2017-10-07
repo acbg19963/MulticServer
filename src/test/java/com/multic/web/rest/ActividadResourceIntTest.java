@@ -41,12 +41,6 @@ public class ActividadResourceIntTest {
     private static final String DEFAULT_ENUNCIADO = "AAAAAAAAAA";
     private static final String UPDATED_ENUNCIADO = "BBBBBBBBBB";
 
-    private static final Integer DEFAULT_AYUDA = 1;
-    private static final Integer UPDATED_AYUDA = 2;
-
-    private static final Integer DEFAULT_TIEMPO = 1;
-    private static final Integer UPDATED_TIEMPO = 2;
-
     private static final DIFICULTAD DEFAULT_DIFICULTAD = DIFICULTAD.FACIL;
     private static final DIFICULTAD UPDATED_DIFICULTAD = DIFICULTAD.INTERMEDIO;
 
@@ -88,8 +82,6 @@ public class ActividadResourceIntTest {
     public static Actividad createEntity(EntityManager em) {
         Actividad actividad = new Actividad()
             .enunciado(DEFAULT_ENUNCIADO)
-            .ayuda(DEFAULT_AYUDA)
-            .tiempo(DEFAULT_TIEMPO)
             .dificultad(DEFAULT_DIFICULTAD);
         return actividad;
     }
@@ -115,8 +107,6 @@ public class ActividadResourceIntTest {
         assertThat(actividadList).hasSize(databaseSizeBeforeCreate + 1);
         Actividad testActividad = actividadList.get(actividadList.size() - 1);
         assertThat(testActividad.getEnunciado()).isEqualTo(DEFAULT_ENUNCIADO);
-        assertThat(testActividad.getAyuda()).isEqualTo(DEFAULT_AYUDA);
-        assertThat(testActividad.getTiempo()).isEqualTo(DEFAULT_TIEMPO);
         assertThat(testActividad.getDificultad()).isEqualTo(DEFAULT_DIFICULTAD);
     }
 
@@ -151,8 +141,6 @@ public class ActividadResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(actividad.getId().intValue())))
             .andExpect(jsonPath("$.[*].enunciado").value(hasItem(DEFAULT_ENUNCIADO.toString())))
-            .andExpect(jsonPath("$.[*].ayuda").value(hasItem(DEFAULT_AYUDA)))
-            .andExpect(jsonPath("$.[*].tiempo").value(hasItem(DEFAULT_TIEMPO)))
             .andExpect(jsonPath("$.[*].dificultad").value(hasItem(DEFAULT_DIFICULTAD.toString())));
     }
 
@@ -168,8 +156,6 @@ public class ActividadResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(actividad.getId().intValue()))
             .andExpect(jsonPath("$.enunciado").value(DEFAULT_ENUNCIADO.toString()))
-            .andExpect(jsonPath("$.ayuda").value(DEFAULT_AYUDA))
-            .andExpect(jsonPath("$.tiempo").value(DEFAULT_TIEMPO))
             .andExpect(jsonPath("$.dificultad").value(DEFAULT_DIFICULTAD.toString()));
     }
 
@@ -192,8 +178,6 @@ public class ActividadResourceIntTest {
         Actividad updatedActividad = actividadRepository.findOne(actividad.getId());
         updatedActividad
             .enunciado(UPDATED_ENUNCIADO)
-            .ayuda(UPDATED_AYUDA)
-            .tiempo(UPDATED_TIEMPO)
             .dificultad(UPDATED_DIFICULTAD);
 
         restActividadMockMvc.perform(put("/api/actividads")
@@ -206,8 +190,6 @@ public class ActividadResourceIntTest {
         assertThat(actividadList).hasSize(databaseSizeBeforeUpdate);
         Actividad testActividad = actividadList.get(actividadList.size() - 1);
         assertThat(testActividad.getEnunciado()).isEqualTo(UPDATED_ENUNCIADO);
-        assertThat(testActividad.getAyuda()).isEqualTo(UPDATED_AYUDA);
-        assertThat(testActividad.getTiempo()).isEqualTo(UPDATED_TIEMPO);
         assertThat(testActividad.getDificultad()).isEqualTo(UPDATED_DIFICULTAD);
     }
 

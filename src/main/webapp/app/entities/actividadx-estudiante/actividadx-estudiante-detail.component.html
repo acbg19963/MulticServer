@@ -1,0 +1,45 @@
+
+<div *ngIf="actividadxEstudiante">
+    <h2><span jhiTranslate="multicApp.actividadxEstudiante.detail.title">Actividadx Estudiante</span> {{actividadxEstudiante.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="multicApp.actividadxEstudiante.acerto">Acerto</span></dt>
+        <dd>
+            <span>{{actividadxEstudiante.acerto}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.actividadxEstudiante.cantayuda">Cantayuda</span></dt>
+        <dd>
+            <span>{{actividadxEstudiante.cantayuda}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.actividadxEstudiante.tiempo">Tiempo</span></dt>
+        <dd>
+            <span>{{actividadxEstudiante.tiempo}}</span>
+        </dd>
+        <dt><span jhiTranslate="multicApp.actividadxEstudiante.estudiante">Estudiante</span></dt>
+        <dd>
+            <div *ngIf="actividadxEstudiante.estudiante">
+                <a [routerLink]="['/estudiante', actividadxEstudiante.estudiante?.id]">{{actividadxEstudiante.estudiante?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="multicApp.actividadxEstudiante.actividad">Actividad</span></dt>
+        <dd>
+            <div *ngIf="actividadxEstudiante.actividad">
+                <a [routerLink]="['/actividad', actividadxEstudiante.actividad?.id]">{{actividadxEstudiante.actividad?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'actividadx-estudiante/'+ actividadxEstudiante.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

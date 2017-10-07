@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.multic.domain.Estudiante;
 
 import com.multic.repository.EstudianteRepository;
+import com.multic.security.SecurityUtils;
 import com.multic.web.rest.util.HeaderUtil;
 import com.multic.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -110,6 +111,20 @@ public class EstudianteResource {
         log.debug("REST request to get Estudiante : {}", id);
         Estudiante estudiante = estudianteRepository.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(estudiante));
+    }
+    
+    /**
+     * GET  /estudiantes/:id : get the "id" estudiante.
+     *
+     * @param id the id of the estudiante to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the estudiante, or with status 404 (Not Found)
+     */
+    @GetMapping("/estudiantes/actual")
+    @Timed
+    public ResponseEntity<Estudiante> getEstudianteACtual() {
+    	String login = SecurityUtils.getCurrentUserLogin();
+        Optional<Estudiante> estudiante = estudianteRepository.getByLogin(login);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(estudiante.get()));
     }
 
     /**

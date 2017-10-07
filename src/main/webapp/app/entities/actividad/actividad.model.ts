@@ -10,8 +10,6 @@ export class Actividad implements BaseEntity {
     constructor(
         public id?: number,
         public enunciado?: string,
-        public ayuda?: number,
-        public tiempo?: number,
         public dificultad?: DIFICULTAD,
         public planeta?: BaseEntity,
         public profesor?: BaseEntity,

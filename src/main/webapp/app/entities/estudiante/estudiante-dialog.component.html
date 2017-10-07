@@ -1,85 +1,86 @@
 <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
-
-    <div class="modal-header">
-        <h4 class="modal-title" id="myEstudianteLabel" jhiTranslate="multicApp.estudiante.home.createOrEditLabel">Create or edit a Estudiante</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                (click)="clear()">&times;</button>
-    </div>
-    <div class="modal-body">
-        <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!estudiante.id">
-            <label for="id" jhiTranslate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                   [(ngModel)]="estudiante.id" readonly />
+    
+        <div class="modal-header">
+            <h4 class="modal-title" id="myEstudianteLabel" jhiTranslate="multicApp.estudiante.home.createOrEditLabel">Create or edit a Estudiante</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                    (click)="clear()">&times;</button>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.fechaNac" for="field_fechaNac">Fecha Nac</label>
-            <div class="input-group">
-                <input id="field_fechaNac" type="text" class="form-control" name="fechaNac" ngbDatepicker  #fechaNacDp="ngbDatepicker" [(ngModel)]="estudiante.fechaNac"
-                required/>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-secondary" (click)="fechaNacDp.toggle()"><i class="fa fa-calendar"></i></button>
-                </span>
+        <div class="modal-body">
+            <jhi-alert-error></jhi-alert-error>
+            <div class="form-group" [hidden]="!estudiante.id">
+                <label for="id" jhiTranslate="global.field.id">ID</label>
+                <input type="text" class="form-control" id="id" name="id"
+                       [(ngModel)]="estudiante.id" readonly />
             </div>
-            <div [hidden]="!(editForm.controls.fechaNac?.dirty && editForm.controls.fechaNac?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.fechaNac?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.fechaNac" for="field_fechaNac">Fecha Nac</label>
+                <div class="input-group">
+                    <input id="field_fechaNac" type="text" class="form-control" name="fechaNac" ngbDatepicker  #fechaNacDp="ngbDatepicker" [(ngModel)]="estudiante.fechaNac"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-secondary" (click)="fechaNacDp.toggle()"><i class="fa fa-calendar"></i></button>
+                    </span>
+                </div>
+                <div [hidden]="!(editForm.controls.fechaNac?.dirty && editForm.controls.fechaNac?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.fechaNac?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.colegio" for="field_colegio">Colegio</label>
+                <input type="text" class="form-control" name="colegio" id="field_colegio"
+                    [(ngModel)]="estudiante.colegio"  />
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.escenario" for="field_escenario">Escenario</label>
+                <select class="form-control" name="escenario" [(ngModel)]="estudiante.escenario" id="field_escenario"  required>
+                    <option value="SUPERHEROES">{{'multicApp.Escenario.SUPERHEROES' | translate}}</option>
+                    <option value="DEPORTISTAS">{{'multicApp.Escenario.DEPORTISTAS' | translate}}</option>
+                </select>
+                <div [hidden]="!(editForm.controls.escenario?.dirty && editForm.controls.escenario?.invalid)">
+                    <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.escenario?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.genero" for="field_genero">Genero</label>
+                <input type="text" class="form-control" name="genero" id="field_genero"
+                    [(ngModel)]="estudiante.genero"  />
+            </div>
+    
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.usuario" for="field_usuario">Usuario</label>
+                <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="estudiante.usuario" >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="userOption.id === estudiante.usuario?.id ? estudiante.usuario : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.firstName}} {{userOption.lastName}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.avatar" for="field_avatar">Avatar</label>
+                <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="estudiante.avatar">
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="avatarOption.id === estudiante.avatar?.id ? estudiante.avatar : avatarOption" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="multicApp.estudiante.curso" for="field_curso">Curso</label>
+                <select class="form-control" id="field_curso" name="curso" [(ngModel)]="estudiante.curso" >
+                    <option [ngValue]="null"></option>
+                    <option [ngValue]="cursoOption.id === estudiante.curso?.id ? estudiante.curso : cursoOption" *ngFor="let cursoOption of cursos; trackBy: trackCursoById">{{cursoOption.id}}</option>
+                </select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.colegio" for="field_colegio">Colegio</label>
-            <input type="text" class="form-control" name="colegio" id="field_colegio"
-                [(ngModel)]="estudiante.colegio"  />
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+                <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+            </button>
+            <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+            </button>
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.escenario" for="field_escenario">Escenario</label>
-            <select class="form-control" name="escenario" [(ngModel)]="estudiante.escenario" id="field_escenario"  required>
-                <option value="SUPERHEROES">{{'multicApp.Escenario.SUPERHEROES' | translate}}</option>
-                <option value="DEPORTISTAS">{{'multicApp.Escenario.DEPORTISTAS' | translate}}</option>
-            </select>
-            <div [hidden]="!(editForm.controls.escenario?.dirty && editForm.controls.escenario?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.escenario?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.genero" for="field_genero">Genero</label>
-            <input type="text" class="form-control" name="genero" id="field_genero"
-                [(ngModel)]="estudiante.genero"  />
-        </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.usuario" for="field_usuario">Usuario</label>
-            <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="estudiante.usuario" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="userOption.id === estudiante.usuario?.id ? estudiante.usuario : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.avatar" for="field_avatar">Avatar</label>
-            <select class="form-control" id="field_avatar" name="avatar" [(ngModel)]="estudiante.avatar">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="avatarOption.id === estudiante.avatar?.id ? estudiante.avatar : avatarOption" *ngFor="let avatarOption of avatars; trackBy: trackAvatarById">{{avatarOption.id}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="multicApp.estudiante.curso" for="field_curso">Curso</label>
-            <select class="form-control" id="field_curso" name="curso" [(ngModel)]="estudiante.curso" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="cursoOption.id === estudiante.curso?.id ? estudiante.curso : cursoOption" *ngFor="let cursoOption of cursos; trackBy: trackCursoById">{{cursoOption.id}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
-            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
-        </button>
-        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
-            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-        </button>
-    </div>
-</form>
+    </form>
+    

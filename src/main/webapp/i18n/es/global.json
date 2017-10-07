@@ -17,6 +17,7 @@
                 "ayuda": "Ayuda",
                 "profesor": "Profesor",
                 "tipEstudiante": "Tip Estudiante",
+                "actividadxEstudiante": "Actividadx Estudiante",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

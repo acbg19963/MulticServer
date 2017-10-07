@@ -1,17 +1,17 @@
 import { Injectable, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Estudiante } from './estudiante.model';
-import { EstudianteService } from './estudiante.service';
+import { ActividadxEstudiante } from './actividadx-estudiante.model';
+import { ActividadxEstudianteService } from './actividadx-estudiante.service';
 
 @Injectable()
-export class EstudiantePopupService {
+export class ActividadxEstudiantePopupService {
     private ngbModalRef: NgbModalRef;
 
     constructor(
         private modalService: NgbModal,
         private router: Router,
-        private estudianteService: EstudianteService
+        private actividadxEstudianteService: ActividadxEstudianteService
 
     ) {
         this.ngbModalRef = null;
@@ -25,23 +25,23 @@ export class EstudiantePopupService {
             }
 
             if (id) {
-                this.estudianteService.find(id).subscribe((estudiante) => {
-                    this.ngbModalRef = this.estudianteModalRef(component, estudiante);
+                this.actividadxEstudianteService.find(id).subscribe((actividadxEstudiante) => {
+                    this.ngbModalRef = this.actividadxEstudianteModalRef(component, actividadxEstudiante);
                     resolve(this.ngbModalRef);
                 });
             } else {
                 // setTimeout used as a workaround for getting ExpressionChangedAfterItHasBeenCheckedError
                 setTimeout(() => {
-                    this.ngbModalRef = this.estudianteModalRef(component, new Estudiante());
+                    this.ngbModalRef = this.actividadxEstudianteModalRef(component, new ActividadxEstudiante());
                     resolve(this.ngbModalRef);
                 }, 0);
             }
         });
     }
 
-    estudianteModalRef(component: Component, estudiante: Estudiante): NgbModalRef {
+    actividadxEstudianteModalRef(component: Component, actividadxEstudiante: ActividadxEstudiante): NgbModalRef {
         const modalRef = this.modalService.open(component, { size: 'lg', backdrop: 'static'});
-        modalRef.componentInstance.estudiante = estudiante;
+        modalRef.componentInstance.actividadxEstudiante = actividadxEstudiante;
         modalRef.result.then((result) => {
             this.router.navigate([{ outlets: { popup: null }}], { replaceUrl: true });
             this.ngbModalRef = null;
