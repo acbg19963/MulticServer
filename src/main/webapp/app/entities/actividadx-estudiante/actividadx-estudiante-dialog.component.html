@@ -32,14 +32,14 @@
             <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.estudiante" for="field_estudiante">Estudiante</label>
             <select class="form-control" id="field_estudiante" name="estudiante" [(ngModel)]="actividadxEstudiante.estudiante" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="estudianteOption.id === actividadxEstudiante.estudiante?.id ? actividadxEstudiante.estudiante : estudianteOption" *ngFor="let estudianteOption of estudiantes; trackBy: trackEstudianteById">{{estudianteOption.id}}</option>
+                <option [ngValue]="estudianteOption.id === actividadxEstudiante.estudiante?.id ? actividadxEstudiante.estudiante : estudianteOption" *ngFor="let estudianteOption of estudiantes; trackBy: trackEstudianteById">{{estudianteOption.usuario.login}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="multicApp.actividadxEstudiante.actividad" for="field_actividad">Actividad</label>
             <select class="form-control" id="field_actividad" name="actividad" [(ngModel)]="actividadxEstudiante.actividad" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="actividadOption.id === actividadxEstudiante.actividad?.id ? actividadxEstudiante.actividad : actividadOption" *ngFor="let actividadOption of actividads; trackBy: trackActividadById">{{actividadOption.id}}</option>
+                <option [ngValue]="actividadOption.id === actividadxEstudiante.actividad?.id ? actividadxEstudiante.actividad : actividadOption" *ngFor="let actividadOption of actividads; trackBy: trackActividadById">{{actividadOption.enunciado}}</option>
             </select>
         </div>
     </div>

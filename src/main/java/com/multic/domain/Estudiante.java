@@ -32,9 +32,8 @@ public class Estudiante implements Serializable {
     @Column(name = "colegio")
     private String colegio;
 
-    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "escenario", nullable = false)
+    @Column(name = "escenario")
     private Escenario escenario;
 
     @Column(name = "genero")
@@ -59,7 +58,7 @@ public class Estudiante implements Serializable {
     @JsonIgnore
     private Set<ActividadxEstudiante> actividadesxEstus = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -208,7 +207,7 @@ public class Estudiante implements Serializable {
     public void setActividadesxEstus(Set<ActividadxEstudiante> actividadxEstudiantes) {
         this.actividadesxEstus = actividadxEstudiantes;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

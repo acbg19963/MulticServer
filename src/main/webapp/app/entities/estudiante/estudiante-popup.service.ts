@@ -26,6 +26,13 @@ export class EstudiantePopupService {
 
             if (id) {
                 this.estudianteService.find(id).subscribe((estudiante) => {
+                    if (estudiante.fechaNac) {
+                        estudiante.fechaNac = {
+                            year: estudiante.fechaNac.getFullYear(),
+                            month: estudiante.fechaNac.getMonth() + 1,
+                            day: estudiante.fechaNac.getDate()
+                        };
+                    }
                     this.ngbModalRef = this.estudianteModalRef(component, estudiante);
                     resolve(this.ngbModalRef);
                 });

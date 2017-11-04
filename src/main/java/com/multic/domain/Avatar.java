@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.multic.domain.enumeration.COLOR;
+
 /**
  * A Avatar.
  */
@@ -25,14 +27,13 @@ public class Avatar implements Serializable {
     @Column(name = "nombre")
     private String nombre;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "cabello")
-    private String cabello;
+    private COLOR cabello;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "ropa")
-    private String ropa;
-
-    @Column(name = "gafas")
-    private String gafas;
+    private COLOR ropa;
 
     @ManyToOne
     private Universo universo;
@@ -41,7 +42,7 @@ public class Avatar implements Serializable {
     @JsonIgnore
     private Estudiante estudiante;
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -76,43 +77,30 @@ public class Avatar implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCabello() {
+    public COLOR getCabello() {
         return cabello;
     }
 
-    public Avatar cabello(String cabello) {
+    public Avatar cabello(COLOR cabello) {
         this.cabello = cabello;
         return this;
     }
 
-    public void setCabello(String cabello) {
+    public void setCabello(COLOR cabello) {
         this.cabello = cabello;
     }
 
-    public String getRopa() {
+    public COLOR getRopa() {
         return ropa;
     }
 
-    public Avatar ropa(String ropa) {
+    public Avatar ropa(COLOR ropa) {
         this.ropa = ropa;
         return this;
     }
 
-    public void setRopa(String ropa) {
+    public void setRopa(COLOR ropa) {
         this.ropa = ropa;
-    }
-
-    public String getGafas() {
-        return gafas;
-    }
-
-    public Avatar gafas(String gafas) {
-        this.gafas = gafas;
-        return this;
-    }
-
-    public void setGafas(String gafas) {
-        this.gafas = gafas;
     }
 
     public Universo getUniverso() {
@@ -140,7 +128,7 @@ public class Avatar implements Serializable {
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -170,7 +158,6 @@ public class Avatar implements Serializable {
             ", nombre='" + getNombre() + "'" +
             ", cabello='" + getCabello() + "'" +
             ", ropa='" + getRopa() + "'" +
-            ", gafas='" + getGafas() + "'" +
             "}";
     }
 }

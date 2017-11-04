@@ -31,7 +31,7 @@
             </column>
 
             <column name="escenario" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
 
             <column name="genero" type="varchar(255)">

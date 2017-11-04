@@ -16,20 +16,23 @@ export class AvatarService {
     create(avatar: Avatar): Observable<Avatar> {
         const copy = this.convert(avatar);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     update(avatar: Avatar): Observable<Avatar> {
         const copy = this.convert(avatar);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
     find(id: number): Observable<Avatar> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
-            return res.json();
+            const jsonResponse = res.json();
+            return this.convertItemFromServer(jsonResponse);
         });
     }
 
@@ -45,9 +48,24 @@ export class AvatarService {
 
     private convertResponse(res: Response): ResponseWrapper {
         const jsonResponse = res.json();
-        return new ResponseWrapper(res.headers, jsonResponse, res.status);
+        const result = [];
+        for (let i = 0; i < jsonResponse.length; i++) {
+            result.push(this.convertItemFromServer(jsonResponse[i]));
+        }
+        return new ResponseWrapper(res.headers, result, res.status);
     }
 
+    /**
+     * Convert a returned JSON object to Avatar.
+     */
+    private convertItemFromServer(json: any): Avatar {
+        const entity: Avatar = Object.assign(new Avatar(), json);
+        return entity;
+    }
+
+    /**
+     * Convert a Avatar to a JSON which can be sent to the server.
+     */
     private convert(avatar: Avatar): Avatar {
         const copy: Avatar = Object.assign({}, avatar);
         return copy;

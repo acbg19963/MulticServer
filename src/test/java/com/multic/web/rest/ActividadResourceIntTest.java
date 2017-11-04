@@ -44,6 +44,9 @@ public class ActividadResourceIntTest {
     private static final DIFICULTAD DEFAULT_DIFICULTAD = DIFICULTAD.FACIL;
     private static final DIFICULTAD UPDATED_DIFICULTAD = DIFICULTAD.INTERMEDIO;
 
+    private static final Boolean DEFAULT_ES_QUIZ = false;
+    private static final Boolean UPDATED_ES_QUIZ = true;
+
     @Autowired
     private ActividadRepository actividadRepository;
 
@@ -82,7 +85,8 @@ public class ActividadResourceIntTest {
     public static Actividad createEntity(EntityManager em) {
         Actividad actividad = new Actividad()
             .enunciado(DEFAULT_ENUNCIADO)
-            .dificultad(DEFAULT_DIFICULTAD);
+            .dificultad(DEFAULT_DIFICULTAD)
+            .esQuiz(DEFAULT_ES_QUIZ);
         return actividad;
     }
 
@@ -108,6 +112,7 @@ public class ActividadResourceIntTest {
         Actividad testActividad = actividadList.get(actividadList.size() - 1);
         assertThat(testActividad.getEnunciado()).isEqualTo(DEFAULT_ENUNCIADO);
         assertThat(testActividad.getDificultad()).isEqualTo(DEFAULT_DIFICULTAD);
+        assertThat(testActividad.isEsQuiz()).isEqualTo(DEFAULT_ES_QUIZ);
     }
 
     @Test
@@ -141,7 +146,8 @@ public class ActividadResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(actividad.getId().intValue())))
             .andExpect(jsonPath("$.[*].enunciado").value(hasItem(DEFAULT_ENUNCIADO.toString())))
-            .andExpect(jsonPath("$.[*].dificultad").value(hasItem(DEFAULT_DIFICULTAD.toString())));
+            .andExpect(jsonPath("$.[*].dificultad").value(hasItem(DEFAULT_DIFICULTAD.toString())))
+            .andExpect(jsonPath("$.[*].esQuiz").value(hasItem(DEFAULT_ES_QUIZ.booleanValue())));
     }
 
     @Test
@@ -156,7 +162,8 @@ public class ActividadResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(actividad.getId().intValue()))
             .andExpect(jsonPath("$.enunciado").value(DEFAULT_ENUNCIADO.toString()))
-            .andExpect(jsonPath("$.dificultad").value(DEFAULT_DIFICULTAD.toString()));
+            .andExpect(jsonPath("$.dificultad").value(DEFAULT_DIFICULTAD.toString()))
+            .andExpect(jsonPath("$.esQuiz").value(DEFAULT_ES_QUIZ.booleanValue()));
     }
 
     @Test
@@ -178,7 +185,8 @@ public class ActividadResourceIntTest {
         Actividad updatedActividad = actividadRepository.findOne(actividad.getId());
         updatedActividad
             .enunciado(UPDATED_ENUNCIADO)
-            .dificultad(UPDATED_DIFICULTAD);
+            .dificultad(UPDATED_DIFICULTAD)
+            .esQuiz(UPDATED_ES_QUIZ);
 
         restActividadMockMvc.perform(put("/api/actividads")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -191,6 +199,7 @@ public class ActividadResourceIntTest {
         Actividad testActividad = actividadList.get(actividadList.size() - 1);
         assertThat(testActividad.getEnunciado()).isEqualTo(UPDATED_ENUNCIADO);
         assertThat(testActividad.getDificultad()).isEqualTo(UPDATED_DIFICULTAD);
+        assertThat(testActividad.isEsQuiz()).isEqualTo(UPDATED_ES_QUIZ);
     }
 
     @Test

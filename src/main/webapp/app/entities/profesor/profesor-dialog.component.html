@@ -22,7 +22,7 @@
             <label class="form-control-label" jhiTranslate="multicApp.profesor.usuario" for="field_usuario">Usuario</label>
             <select class="form-control" id="field_usuario" name="usuario" [(ngModel)]="profesor.usuario" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="userOption.id === profesor.usuario?.id ? profesor.usuario : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                <option [ngValue]="userOption.id === profesor.usuario?.id ? profesor.usuario : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</option>
             </select>
         </div>
     </div>

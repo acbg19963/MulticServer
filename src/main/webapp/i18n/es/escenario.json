@@ -3,7 +3,8 @@
         "Escenario" : {
             "null": "",
             "SUPERHEROES": "SUPERHEROES",
-            "DEPORTISTAS": "DEPORTISTAS"
+            "DEPORTISTAS": "DEPORTISTAS",
+            "NINGUNO": "NINGUNO"
         }
     }
 }

@@ -38,10 +38,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="gafas" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="universo_id" type="bigint">
                 <constraints nullable="true" />
             </column>

@@ -28,7 +28,7 @@ export class AvatarDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private avatarService: AvatarService,
         private universoService: UniversoService,
         private estudianteService: EstudianteService,
@@ -75,7 +75,7 @@ export class AvatarDialogComponent implements OnInit {
     }
 
     private onError(error: any) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 
     trackUniversoById(index: number, item: Universo) {

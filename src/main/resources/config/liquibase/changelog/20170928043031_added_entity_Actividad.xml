@@ -30,6 +30,10 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="es_quiz" type="bit">
+                <constraints nullable="true" />
+            </column>
+
             <column name="planeta_id" type="bigint">
                 <constraints nullable="true" />
             </column>

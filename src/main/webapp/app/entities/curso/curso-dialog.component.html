@@ -21,7 +21,7 @@
         <div class="form-group">
             <label jhiTranslate="multicApp.curso.profesores" for="field_profesores">Profesores</label>
             <select class="form-control" id="field_profesores" multiple name="profesores" [(ngModel)]="curso.profesores">
-                <option [ngValue]="getSelected(curso.profesores, profesorOption)" *ngFor="let profesorOption of profesors; trackBy: trackProfesorById">{{profesorOption.id}}</option>
+                <option [ngValue]="getSelected(curso.profesores, profesorOption)" *ngFor="let profesorOption of profesors; trackBy: trackProfesorById">{{profesorOption.usuario.login}}</option>
             </select>
         </div>
     </div>

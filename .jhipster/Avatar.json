@@ -26,15 +26,13 @@
         },
         {
             "fieldName": "cabello",
-            "fieldType": "String"
+            "fieldType": "COLOR",
+            "fieldValues": "AZUL,MORADO,ROJO,AMARILLO"
         },
         {
             "fieldName": "ropa",
-            "fieldType": "String"
-        },
-        {
-            "fieldName": "gafas",
-            "fieldType": "String"
+            "fieldType": "COLOR",
+            "fieldValues": "AZUL,MORADO,ROJO,AMARILLO"
         }
     ],
     "changelogDate": "20170928043028",

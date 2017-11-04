@@ -12,6 +12,10 @@
         <dd>
             <span jhiTranslate="{{'multicApp.DIFICULTAD.' + actividad.dificultad}}">{{actividad.dificultad}}</span>
         </dd>
+        <dt><span jhiTranslate="multicApp.actividad.esQuiz">Es Quiz</span></dt>
+        <dd>
+            <span>{{actividad.esQuiz}}</span>
+        </dd>
         <dt><span jhiTranslate="multicApp.actividad.planeta">Planeta</span></dt>
         <dd>
             <div *ngIf="actividad.planeta">

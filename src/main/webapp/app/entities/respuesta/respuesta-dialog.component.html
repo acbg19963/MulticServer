@@ -27,7 +27,7 @@
             <label class="form-control-label" jhiTranslate="multicApp.respuesta.actividad" for="field_actividad">Actividad</label>
             <select class="form-control" id="field_actividad" name="actividad" [(ngModel)]="respuesta.actividad" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="actividadOption.id === respuesta.actividad?.id ? respuesta.actividad : actividadOption" *ngFor="let actividadOption of actividads; trackBy: trackActividadById">{{actividadOption.id}}</option>
+                <option [ngValue]="actividadOption.id === respuesta.actividad?.id ? respuesta.actividad : actividadOption" *ngFor="let actividadOption of actividads; trackBy: trackActividadById">{{actividadOption.enunciado}}</option>
             </select>
         </div>
     </div>

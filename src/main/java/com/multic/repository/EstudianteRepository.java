@@ -17,5 +17,7 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
 	
 	@Query("SELECT e FROM Estudiante e LEFT JOIN e.usuario u WHERE u.login = ?1")
 	Optional<Estudiante> getByLogin(String login);
+        
+        
 	
 }

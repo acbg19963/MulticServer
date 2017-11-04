@@ -32,7 +32,7 @@ export class EstudianteDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private estudianteService: EstudianteService,
         private userService: UserService,
         private avatarService: AvatarService,
@@ -93,7 +93,7 @@ export class EstudianteDialogComponent implements OnInit {
     }
 
     private onError(error: any) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 
     trackUserById(index: number, item: User) {

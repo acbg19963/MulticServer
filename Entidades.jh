@@ -1,6 +1,6 @@
 entity Estudiante {
 	
-    fechaNac LocalDate required,
+    fechaNac LocalDate,
     colegio String,
     escenario Escenario ,
     genero String
@@ -11,7 +11,7 @@ enum Escenario {
 
 entity Avatar
 {
-	monedas Integer,
+    monedas Integer,
     nombre String,
     cabello COLOR,
     ropa COLOR

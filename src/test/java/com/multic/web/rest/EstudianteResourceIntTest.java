@@ -31,6 +31,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.multic.domain.enumeration.Escenario;
+import com.multic.repository.ActividadRepository;
+import com.multic.repository.ActividadxEstudianteRepository;
+import com.multic.repository.AvatarRepository;
+import com.multic.repository.PlanetaRepository;
 /**
  * Test class for the EstudianteResource REST controller.
  *
@@ -54,6 +58,9 @@ public class EstudianteResourceIntTest {
 
     @Autowired
     private EstudianteRepository estudianteRepository;
+    
+    @Autowired
+    private AvatarRepository avatarRepo;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -71,10 +78,21 @@ public class EstudianteResourceIntTest {
 
     private Estudiante estudiante;
 
+    @Autowired
+    private ActividadRepository actividadRepository;
+    
+    @Autowired
+    private PlanetaRepository planetaRepository;
+    
+    @Autowired
+    private ActividadxEstudianteRepository axeRepositry;
+    
+    
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final EstudianteResource estudianteResource = new EstudianteResource(estudianteRepository);
+        final EstudianteResource estudianteResource = new EstudianteResource(estudianteRepository, avatarRepo
+            , actividadRepository, planetaRepository, axeRepositry);
         this.restEstudianteMockMvc = MockMvcBuilders.standaloneSetup(estudianteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -147,24 +165,6 @@ public class EstudianteResourceIntTest {
         int databaseSizeBeforeTest = estudianteRepository.findAll().size();
         // set the field null
         estudiante.setFechaNac(null);
-
-        // Create the Estudiante, which fails.
-
-        restEstudianteMockMvc.perform(post("/api/estudiantes")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(estudiante)))
-            .andExpect(status().isBadRequest());
-
-        List<Estudiante> estudianteList = estudianteRepository.findAll();
-        assertThat(estudianteList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkEscenarioIsRequired() throws Exception {
-        int databaseSizeBeforeTest = estudianteRepository.findAll().size();
-        // set the field null
-        estudiante.setEscenario(null);
 
         // Create the Estudiante, which fails.
 

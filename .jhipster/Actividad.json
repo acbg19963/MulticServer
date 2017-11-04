@@ -35,6 +35,10 @@
             "fieldName": "dificultad",
             "fieldType": "DIFICULTAD",
             "fieldValues": "FACIL,INTERMEDIO,DIFICIL"
+        },
+        {
+            "fieldName": "esQuiz",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20170928043031",

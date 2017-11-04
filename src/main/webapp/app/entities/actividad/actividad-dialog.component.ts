@@ -28,7 +28,7 @@ export class ActividadDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private actividadService: ActividadService,
         private planetaService: PlanetaService,
         private profesorService: ProfesorService,
@@ -75,7 +75,7 @@ export class ActividadDialogComponent implements OnInit {
     }
 
     private onError(error: any) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 
     trackPlanetaById(index: number, item: Planeta) {

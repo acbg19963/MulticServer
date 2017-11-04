@@ -1,10 +1,20 @@
 package com.multic.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.multic.domain.Actividad;
+import com.multic.domain.ActividadxEstudiante;
+import com.multic.domain.Avatar;
 import com.multic.domain.Estudiante;
+import com.multic.domain.Planeta;
+import com.multic.domain.enumeration.COLOR;
+import com.multic.repository.ActividadRepository;
+import com.multic.repository.ActividadxEstudianteRepository;
+import com.multic.repository.AvatarRepository;
 
 import com.multic.repository.EstudianteRepository;
+import com.multic.repository.PlanetaRepository;
 import com.multic.security.SecurityUtils;
+import com.multic.service.dto.ProgresoEstudiante;
 import com.multic.web.rest.util.HeaderUtil;
 import com.multic.web.rest.util.PaginationUtil;
 import io.swagger.annotations.ApiParam;
@@ -21,6 +31,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,9 +49,24 @@ public class EstudianteResource {
     private static final String ENTITY_NAME = "estudiante";
 
     private final EstudianteRepository estudianteRepository;
+    
+    private final AvatarRepository avatarRepository;
+    
+    private final ActividadRepository actividadRepository;
 
-    public EstudianteResource(EstudianteRepository estudianteRepository) {
+    private final PlanetaRepository planetaRepository;
+    
+    private final ActividadxEstudianteRepository axeRepositry;
+    
+    
+    public EstudianteResource(EstudianteRepository estudianteRepository,
+            AvatarRepository avatarRepository, ActividadRepository aR,
+            PlanetaRepository pR, ActividadxEstudianteRepository axeRepositry) {
         this.estudianteRepository = estudianteRepository;
+        this.avatarRepository = avatarRepository;
+        this.actividadRepository = aR;
+        this.planetaRepository = pR;
+        this.axeRepositry = axeRepositry;
     }
 
     /**
@@ -56,6 +83,12 @@ public class EstudianteResource {
         if (estudiante.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new estudiante cannot already have an ID")).body(null);
         }
+        Avatar avatar = new Avatar();
+        avatar.setCabello(COLOR.AMARILLO);
+        avatar.setRopa(COLOR.AMARILLO);
+        avatar.setMonedas(0);
+        avatar = avatarRepository.save(avatar);
+        estudiante.setAvatar(avatar);
         Estudiante result = estudianteRepository.save(estudiante);
         return ResponseEntity.created(new URI("/api/estudiantes/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -127,6 +160,62 @@ public class EstudianteResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(estudiante.get()));
     }
 
+    
+    @GetMapping("/estudiante/{id}/progreso")
+    public ResponseEntity<?> obtenerProgresoEstudiante(
+        @PathVariable Long id) {
+        
+        List<Planeta> planetas = planetaRepository.findAll();
+        String login = estudianteRepository.findOne(id).getUsuario().getLogin();
+        List<ProgresoEstudiante> terminados = new ArrayList<>();
+        for (Planeta planeta : planetas) {
+            List<Actividad> actividades = planetaRepository.actividadesPorPlaneta(planeta.getId());
+            // ver si ese usuario completó la actividad
+            int totalActividades = 0, totalActidadesCompletadas = 0;
+            int totalQuizes = 0, totalQuizesPasados = 0;
+            for (Actividad actividad : actividades) {
+                Optional<ActividadxEstudiante> axe = axeRepositry.getProgreso(actividad.getId(), login);
+                ProgresoEstudiante progreso = new ProgresoEstudiante();
+                progreso.setActividad(actividad);
+                if (axe.isPresent()) {
+                    progreso.setAyudas(axe.get().getCantayuda());
+                    progreso.setTiempo(axe.get().getTiempo());
+                    progreso.setTerminado(true);
+                }
+                terminados.add(progreso);
+            }
+        }
+        java.util.Map<String, List<ProgresoEstudiante>> result = new HashMap<>();
+        result.put("planetas", terminados);
+        return ResponseEntity.ok(result);
+    }
+    
+    
+    
+    @GetMapping("/estudiante/progreso/quizes")
+    public ResponseEntity<?> obtenerProgresoEstudianteQuizes() {
+        
+        List<Planeta> planetas = planetaRepository.findAll();
+        String login = SecurityUtils.getCurrentUserLogin();
+        List<Planeta> terminados = new ArrayList<>();
+        for (Planeta planeta : planetas) {
+            List<Actividad> actividades = planetaRepository.actividadesPorPlaneta(planeta.getId());
+            // ver si ese usuario completó la actividad
+            boolean completed = true;
+            for (Actividad actividad : actividades) {
+                Optional<Actividad> done = axeRepositry.estaCompletada(actividad.getId(), login);
+                if(!done.isPresent() && actividad.isEsQuiz()) {
+                    completed = false;
+                }
+            }
+            if (completed) {
+                terminados.add(planeta);
+            }
+        }
+        java.util.Map<String, List<Planeta>> result = new HashMap<>();
+        result.put("planetas", terminados);
+        return ResponseEntity.ok(result);
+    }
     /**
      * DELETE  /estudiantes/:id : delete the "id" estudiante.
      *

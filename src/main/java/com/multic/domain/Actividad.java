@@ -30,6 +30,9 @@ public class Actividad implements Serializable {
     @Column(name = "dificultad")
     private DIFICULTAD dificultad;
 
+    @Column(name = "es_quiz")
+    private Boolean esQuiz;
+
     @ManyToOne
     private Planeta planeta;
 
@@ -44,7 +47,7 @@ public class Actividad implements Serializable {
     @JsonIgnore
     private Set<Ayuda> ayudas = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -77,6 +80,19 @@ public class Actividad implements Serializable {
 
     public void setDificultad(DIFICULTAD dificultad) {
         this.dificultad = dificultad;
+    }
+
+    public Boolean isEsQuiz() {
+        return esQuiz;
+    }
+
+    public Actividad esQuiz(Boolean esQuiz) {
+        this.esQuiz = esQuiz;
+        return this;
+    }
+
+    public void setEsQuiz(Boolean esQuiz) {
+        this.esQuiz = esQuiz;
     }
 
     public Planeta getPlaneta() {
@@ -154,7 +170,7 @@ public class Actividad implements Serializable {
     public void setAyudas(Set<Ayuda> ayudas) {
         this.ayudas = ayudas;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -182,6 +198,7 @@ public class Actividad implements Serializable {
             "id=" + getId() +
             ", enunciado='" + getEnunciado() + "'" +
             ", dificultad='" + getDificultad() + "'" +
+            ", esQuiz='" + isEsQuiz() + "'" +
             "}";
     }
 }

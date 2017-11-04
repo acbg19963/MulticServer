@@ -28,6 +28,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.multic.domain.enumeration.COLOR;
+import com.multic.domain.enumeration.COLOR;
 /**
  * Test class for the AvatarResource REST controller.
  *
@@ -43,14 +45,11 @@ public class AvatarResourceIntTest {
     private static final String DEFAULT_NOMBRE = "AAAAAAAAAA";
     private static final String UPDATED_NOMBRE = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CABELLO = "AAAAAAAAAA";
-    private static final String UPDATED_CABELLO = "BBBBBBBBBB";
+    private static final COLOR DEFAULT_CABELLO = COLOR.AZUL;
+    private static final COLOR UPDATED_CABELLO = COLOR.MORADO;
 
-    private static final String DEFAULT_ROPA = "AAAAAAAAAA";
-    private static final String UPDATED_ROPA = "BBBBBBBBBB";
-
-    private static final String DEFAULT_GAFAS = "AAAAAAAAAA";
-    private static final String UPDATED_GAFAS = "BBBBBBBBBB";
+    private static final COLOR DEFAULT_ROPA = COLOR.AZUL;
+    private static final COLOR UPDATED_ROPA = COLOR.MORADO;
 
     @Autowired
     private AvatarRepository avatarRepository;
@@ -92,8 +91,7 @@ public class AvatarResourceIntTest {
             .monedas(DEFAULT_MONEDAS)
             .nombre(DEFAULT_NOMBRE)
             .cabello(DEFAULT_CABELLO)
-            .ropa(DEFAULT_ROPA)
-            .gafas(DEFAULT_GAFAS);
+            .ropa(DEFAULT_ROPA);
         return avatar;
     }
 
@@ -121,7 +119,6 @@ public class AvatarResourceIntTest {
         assertThat(testAvatar.getNombre()).isEqualTo(DEFAULT_NOMBRE);
         assertThat(testAvatar.getCabello()).isEqualTo(DEFAULT_CABELLO);
         assertThat(testAvatar.getRopa()).isEqualTo(DEFAULT_ROPA);
-        assertThat(testAvatar.getGafas()).isEqualTo(DEFAULT_GAFAS);
     }
 
     @Test
@@ -157,8 +154,7 @@ public class AvatarResourceIntTest {
             .andExpect(jsonPath("$.[*].monedas").value(hasItem(DEFAULT_MONEDAS)))
             .andExpect(jsonPath("$.[*].nombre").value(hasItem(DEFAULT_NOMBRE.toString())))
             .andExpect(jsonPath("$.[*].cabello").value(hasItem(DEFAULT_CABELLO.toString())))
-            .andExpect(jsonPath("$.[*].ropa").value(hasItem(DEFAULT_ROPA.toString())))
-            .andExpect(jsonPath("$.[*].gafas").value(hasItem(DEFAULT_GAFAS.toString())));
+            .andExpect(jsonPath("$.[*].ropa").value(hasItem(DEFAULT_ROPA.toString())));
     }
 
     @Test
@@ -175,8 +171,7 @@ public class AvatarResourceIntTest {
             .andExpect(jsonPath("$.monedas").value(DEFAULT_MONEDAS))
             .andExpect(jsonPath("$.nombre").value(DEFAULT_NOMBRE.toString()))
             .andExpect(jsonPath("$.cabello").value(DEFAULT_CABELLO.toString()))
-            .andExpect(jsonPath("$.ropa").value(DEFAULT_ROPA.toString()))
-            .andExpect(jsonPath("$.gafas").value(DEFAULT_GAFAS.toString()));
+            .andExpect(jsonPath("$.ropa").value(DEFAULT_ROPA.toString()));
     }
 
     @Test
@@ -200,8 +195,7 @@ public class AvatarResourceIntTest {
             .monedas(UPDATED_MONEDAS)
             .nombre(UPDATED_NOMBRE)
             .cabello(UPDATED_CABELLO)
-            .ropa(UPDATED_ROPA)
-            .gafas(UPDATED_GAFAS);
+            .ropa(UPDATED_ROPA);
 
         restAvatarMockMvc.perform(put("/api/avatars")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -216,7 +210,6 @@ public class AvatarResourceIntTest {
         assertThat(testAvatar.getNombre()).isEqualTo(UPDATED_NOMBRE);
         assertThat(testAvatar.getCabello()).isEqualTo(UPDATED_CABELLO);
         assertThat(testAvatar.getRopa()).isEqualTo(UPDATED_ROPA);
-        assertThat(testAvatar.getGafas()).isEqualTo(UPDATED_GAFAS);
     }
 
     @Test

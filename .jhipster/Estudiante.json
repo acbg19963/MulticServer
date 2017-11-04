@@ -51,10 +51,7 @@
         {
             "fieldName": "escenario",
             "fieldType": "Escenario",
-            "fieldValues": "SUPERHEROES,DEPORTISTAS",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldValues": "SUPERHEROES,DEPORTISTAS,NINGUNO"
         },
         {
             "fieldName": "genero",

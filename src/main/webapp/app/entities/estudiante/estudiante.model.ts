@@ -2,13 +2,14 @@ import { BaseEntity, User } from './../../shared';
 
 export const enum Escenario {
     'SUPERHEROES',
-    'DEPORTISTAS'
+    'DEPORTISTAS',
+    'NINGUNO'
 }
 
 export class Estudiante implements BaseEntity {
     constructor(
         public id?: number,
-        public fechaNac?: string,
+        public fechaNac?: any,
         public colegio?: string,
         public escenario?: Escenario,
         public genero?: string,

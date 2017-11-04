@@ -1,0 +1,11 @@
+{
+    "multicApp": {
+        "COLOR" : {
+            "null": "",
+            "AZUL": "AZUL",
+            "MORADO": "MORADO",
+            "ROJO": "ROJO",
+            "AMARILLO": "AMARILLO"
+        }
+    }
+}
